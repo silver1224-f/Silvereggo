@@ -1,0 +1,24 @@
+name: Build Plugin
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+      - name: Build with javac
+        run: |
+          wget https://papermc.io -O paper.jar
+          mkdir -p build/classes
+          javac -cp paper.jar SilverDragonEgg.java -d build/classes
+          cp plugin.yml build/classes/
+          jar cf SilverDragonEgg.jar -C build/classes .
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SilverDragonEgg-Plugin
+          path: SilverDragonEgg.jar
