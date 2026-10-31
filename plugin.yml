@@ -1,0 +1,8 @@
+name: SilverDragonEgg
+version: 1.0
+main: SilverDragonEgg
+api-version: '1.21'
+commands:
+  silverdragonegg:
+    description: Выдать Ядро Вечности
+    permission: silverdragonegg.admin
